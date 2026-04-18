@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Resources Dashboard</title>
+    <style>
+        /* BASE STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* MAIN CONTAINER */
+        #ui-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            background-color: #080808;
+            border-radius: 12px;
+            border: 1px solid #1a1a1a;
+            overflow: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #000;
+            border-bottom: 1px solid #111;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: #eee;
+        }
+
+        .close-btn {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .close-btn:hover {
+            background-color: #b30000;
+        }
+
+        /* LIST CONTENT */
+        .resource-list {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .resource-card {
+            display: flex;
+            align-items: center;
+            background-color: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        /* THUMBNAIL */
+        .thumb-box {
+            position: relative;
+            width: 180px;
+            height: 100px;
+            background: #222;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #333;
+            cursor: pointer;
+        }
+
+        .thumb-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .thumb-box:hover img {
+            transform: scale(1.05);
+        }
+
+        .part-tag {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: bold;
+            border-radius: 2px;
+        }
+
+        /* SPACER */
+        .spacer {
+            flex-grow: 1;
+        }
+
+        /* RED RESOURCE BUTTON */
+        .res-btn {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.1s, background 0.2s;
+        }
+
+        .res-btn:active {
+            transform: scale(0.95);
+        }
+
+        .res-btn:hover {
+            background-color: #ff3333;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ui-wrapper">
+        <div class="header">
+            <div class="header-title">📁 Free Fire Resources</div>
+            <button class="close-btn" onclick="openResource('dashboard.html')">✖ Close</button>
+        </div>
+
+        <div class="resource-list">
+            
+            <div class="resource-card">
+                <div class="thumb-box">
+                    <img src="image.png" alt="Thumb">
+                    <div class="part-tag">MXG BRUTAL</div>
+                </div>
+                <div class="spacer"></div>
+                <button class="res-btn" onclick="openResource('https://www.mediafire.com/file/m3fms1fh6wllqhq/MXG_BRUTAL_V44[1].apk/file')">➜] Download</button>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        // FUNCTION FOR RESOURCE BUTTONS
+        function openResource(url) {
+            alert("Redirecting to Resource...");
+            window.open(url, '_blank');
+        }
+
+        // FUNCTION FOR CLOSE BUTTON
+        function closeUI() {
+            const ui = document.getElementById('ui-wrapper');
+            ui.style.opacity = '0';
+            setTimeout(() => {
+                ui.style.display = 'none';
+                alert("Interface Closed. Refresh to see it again.");
+            }, 300);
+        }
+    </script>
+<footer style="position: fixed; bottom: 0; width: 100%; background: #000; color: #aaa; text-align: center; padding: 10px; font-size: 14px;">
+    ⚠️ file updates every 30 days. Please make sure to download it before it changes.
+</footer>
+
+</body>
+</html>

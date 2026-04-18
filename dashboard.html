@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hack Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    font-family: Arial, sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+/* CENTER CONTENT */
+.container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* TITLE */
+.top-title {
+    color: red;
+    font-size: 55px;
+    font-weight: bold;
+    letter-spacing: 10px;
+}
+
+.main-title {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.main-title span {
+    color: orange;
+}
+
+/* BUTTONS */
+.buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 20px;
+    background: red;
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    box-shadow: 0 0 10px red, 0 0 20px red;
+}
+
+/* PARTICLE CANVAS */
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+
+<div class="container">
+    <div class="top-title">MAX HACKS</div>
+    <h1 class="main-title"><span>🔥</span> Hack Menu</h1>
+
+    <div class="buttons">
+        <a href="https://www.youtube.com/@MAX_SABER_33K" class="btn">▶ Visit Channel</a>
+        <a href="https://discord.gg/uhEgGUqWxk" class="btn">💬 Join Discord</a>
+        <a href="resourcesff.html" class="btn">📁 Free Fire Hacks</a>
+        <a href="resources.html" class="btn">📁 Minecraft Hacks</a>
+    </div>
+</div>
+
+<script>
+// PARTICLE NETWORK EFFECT (LIKE YOUR IMAGE)
+
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 100; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 1,
+        vy: (Math.random() - 0.5) * 1
+    });
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // draw lines
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i; j < particles.length; j++) {
+            let dx = particles[i].x - particles[j].x;
+            let dy = particles[i].y - particles[j].y;
+            let dist = Math.sqrt(dx*dx + dy*dy);
+
+            if (dist < 120) {
+                ctx.strokeStyle = "rgba(255,0,0,0.2)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+
+    // draw particles
+    particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.fillStyle = "red";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Naruto Cyber Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    background: black;
+}
+
+/* BLUR BACKGROUND IMAGE */
+.bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('https://wallpapercave.com/wp/wp5128415.jpg') center/cover;
+    filter: blur(8px) brightness(0.4);
+}
+
+/* LOGIN BOX */
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 320px;
+    padding: 30px;
+    
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 12px;
+    
+    text-align: center;
+    
+    box-shadow: 0 0 25px red;
+    border: 1px solid rgba(255,0,0,0.5);
+    z-index: 10;
+}
+
+.login-box h2 {
+    color: red;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px red;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    
+    background: transparent;
+    border: 1px solid red;
+    color: white;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 10px;
+    
+    background: red;
+    border: none;
+    color: white;
+    
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.login-box button:hover {
+    background: darkred;
+    box-shadow: 0 0 10px red, 0 0 20px red;
+}
+
+/* FLOATING NARUTO CHARACTERS */
+.naruto {
+    position: absolute;
+    width: 120px;
+    pointer-events: none;
+    animation: float 6s infinite ease-in-out;
+    opacity: 0.9;
+}
+
+.naruto:nth-child(1) { left: 5%; top: 20%; animation-delay: 0s; }
+.naruto:nth-child(2) { right: 10%; top: 30%; animation-delay: 2s; }
+.naruto:nth-child(3) { left: 15%; bottom: 10%; animation-delay: 4s; }
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* PARTICLES */
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<!-- Naruto Characters -->
+<img src="https://i.imgur.com/2yaf2wb.png" class="naruto">
+<img src="https://i.imgur.com/2yaf2wb.png" class="naruto">
+<img src="https://i.imgur.com/2yaf2wb.png" class="naruto">
+
+<canvas id="particles"></canvas>
+
+<div class="login-box">
+    <h2>Enter Discord Name</h2>
+    <input type="text" placeholder="user#1234" id="username">
+    <button onclick="login()">LOGIN</button>
+</div>
+
+<script>
+function login() {
+    let user = document.getElementById("username").value;
+
+    if(user === "") {
+        alert("Enter your Discord name!");
+    } else {
+        // save user (optional)
+        localStorage.setItem("user", user);
+
+        // redirect to dashboard
+        window.location.href = "dashboard.html";
+    }
+}
+</script>
+
+</body>
+</html>
